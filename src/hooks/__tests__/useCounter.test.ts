@@ -16,6 +16,7 @@ describe('useCounter', () => {
 
   it('should incremente count', () => {
     const { result } = renderHook(() => useCounter());
+    // agregas el add para esperar a que el hook actualice su estado despues de ejecutarse la función
     act(() => {
       result.current.increment();
     });

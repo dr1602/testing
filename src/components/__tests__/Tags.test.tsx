@@ -33,4 +33,25 @@ describe('Tags', () => {
     // @ts-expect-error El método toHaveTextContent existe en runtime, pero no en el tipo de VS Code.
     expect(tags[0]).toHaveTextContent('bar');
   });
+
+  it('should render many tags', async () => {
+    const mockResponse = {
+      data: [
+        { id: '1', name: 'bar' },
+        { id: '2', name: 'dos' },
+        { id: '3', name: 'tres' },
+      ],
+    };
+    vi.spyOn(axios, 'get').mockResolvedValue(mockResponse);
+    render(<Tags />);
+    // colocas el asyn y el await porque tienes que esperar a que la data le llegue al componente
+    const tags = await screen.findAllByRole('treeitem');
+    expect(tags).toHaveLength(3);
+    // @ts-expect-error El método toHaveTextContent existe en runtime, pero no en el tipo de VS Code.
+    expect(tags[0]).toHaveTextContent('bar');
+    // @ts-expect-error El método toHaveTextContent existe en runtime, pero no en el tipo de VS Code.
+    expect(tags[1]).toHaveTextContent('dos');
+    // @ts-expect-error El método toHaveTextContent existe en runtime, pero no en el tipo de VS Code.
+    expect(tags[2]).toHaveTextContent('tres');
+  });
 });
