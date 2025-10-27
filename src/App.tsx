@@ -1,7 +1,9 @@
+import { Todos } from './features/todos/components/Todos';
+
 export const App = () => {
   return (
     <>
-      <p> App</p>
+      <Todos />
     </>
   );
 };
