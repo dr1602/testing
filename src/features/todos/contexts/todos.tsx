@@ -1,33 +1,16 @@
 import axios from 'axios';
-import React, {
-  createContext,
-  useEffect,
-  useReducer,
-  type Dispatch,
-  type ReactNode,
-} from 'react';
+import { useEffect, useReducer } from 'react';
 
-interface Todo {
-  id: number;
-  text: string;
-  isCompleted: boolean;
-}
-
-interface State {
-  todos: Todo[];
-  filter: 'all' | 'active' | 'completed';
-}
-
-type Action =
-  | { type: 'getTodos'; payload: Todo[] }
-  | { type: 'addTodo'; payload: Todo }
-  | { type: 'toggleAll'; payload: boolean }
-  | { type: 'updateTodo'; payload: Partial<Todo> & { id: number } }
-  | { type: 'removeTodo'; payload: number }
-  | { type: 'changeFilter'; payload: 'all' | 'active' | 'completed' }
-  | { type: 'setFilter'; payload: 'all' | 'active' | 'completed' };
-
-type AppDispatch = Dispatch<Action>;
+import {
+  type Todo,
+  type State,
+  type Action,
+  type AppDispatch,
+  type TodoToCreate,
+  type FieldsToUpdate,
+  TodosContext,
+  type TodosProviderProps,
+} from '../utils/types/generalTodoTypes';
 
 export const initialState = {
   todos: [],
@@ -89,10 +72,6 @@ export const reducer = (state: State, action: Action) => {
       return state;
   }
 };
-
-type TodoToCreate = Omit<Todo, 'id'>;
-
-type FieldsToUpdate = Partial<TodoToCreate>;
 
 export const changeFilter = async (
   dispatch: AppDispatch,
@@ -169,24 +148,6 @@ export const toggleAll = async (
     payload: isCompleted,
   });
 };
-
-interface TodoActions {
-  addTodo: (todoToCreate: TodoToCreate) => Promise<void>;
-  updateTodo: (todoId: number, fieldsToUpdate: FieldsToUpdate) => Promise<void>;
-  removeTodo: (todoId: number) => Promise<void>;
-  changeFilter: (filter: 'all' | 'active' | 'completed') => Promise<void>;
-  toggleAll: (isCompleted: boolean) => Promise<void>;
-}
-
-type TodoContextValue = [State, AppDispatch, TodoActions];
-
-export const TodosContext = createContext<TodoContextValue | undefined>(
-  undefined
-);
-
-interface TodosProviderProps {
-  children: ReactNode;
-}
 
 export const TodosProvider: React.FC<TodosProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState as State);
