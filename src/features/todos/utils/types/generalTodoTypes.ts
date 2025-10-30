@@ -1,28 +1,31 @@
 import { createContext, type Dispatch, type ReactNode } from 'react';
 
-export interface Todo {
+export interface IndividualTodoType {
   id: number;
   text: string;
   isCompleted: boolean;
 }
 
 export interface State {
-  todos: Todo[];
+  todos: IndividualTodoType[];
   filter: 'all' | 'active' | 'completed';
 }
 
 export type Action =
-  | { type: 'getTodos'; payload: Todo[] }
-  | { type: 'addTodo'; payload: Todo }
+  | { type: 'getTodos'; payload: IndividualTodoType[] }
+  | { type: 'addTodo'; payload: IndividualTodoType }
   | { type: 'toggleAll'; payload: boolean }
-  | { type: 'updateTodo'; payload: Partial<Todo> & { id: number } }
+  | {
+      type: 'updateTodo';
+      payload: Partial<IndividualTodoType> & { id: number };
+    }
   | { type: 'removeTodo'; payload: number }
   | { type: 'changeFilter'; payload: 'all' | 'active' | 'completed' }
   | { type: 'setFilter'; payload: 'all' | 'active' | 'completed' };
 
 export type AppDispatch = Dispatch<Action>;
 
-export type TodoToCreate = Omit<Todo, 'id'>;
+export type TodoToCreate = Omit<IndividualTodoType, 'id'>;
 
 export type FieldsToUpdate = Partial<TodoToCreate>;
 

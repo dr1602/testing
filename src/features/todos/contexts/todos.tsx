@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 
 import {
-  type Todo,
+  type IndividualTodoType,
   type State,
   type Action,
   type AppDispatch,
@@ -134,7 +134,7 @@ export const removeTodo = async (
 export const toggleAll = async (
   dispatch: AppDispatch,
   isCompleted: boolean,
-  todos: Todo[]
+  todos: IndividualTodoType[]
 ): Promise<void> => {
   const promises = todos.map((todo) => {
     return axios.put(`http://localhost:3004/todos/${todo.id}`, {
