@@ -1,16 +1,24 @@
-import { useState, useContext } from 'react';
+import {
+  useState,
+  useContext,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from 'react';
 
-import { TodosContext } from '../contexts/todos';
+import {
+  TodosContext,
+  type TodosContextValue,
+} from '../utils/types/generalTodoTypes';
 
 export const Header: React.FC = () => {
   const [text, setText] = useState('');
-  const [, , { addTodo }] = useContext(TodosContext);
+  const [, , { addTodo }] = useContext(TodosContext) as TodosContextValue;
 
-  const changeText = (event) => {
+  const changeText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
-  const keydownText = (event) => {
+  const keydownText = (event: KeyboardEvent<HTMLInputElement>) => {
     const isEnter = event.key === 'Enter';
     const newText = text.trim();
     const isTextPresent = newText.length > 0;

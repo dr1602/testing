@@ -46,3 +46,11 @@ export const TodosContext = createContext<TodoContextValue | undefined>(
 export interface TodosProviderProps {
   children: ReactNode;
 }
+
+export interface TodoProps {
+  todo: IndividualTodoType;
+  isEditing: boolean;
+  setEditingId: (id: number | null) => void;
+}
+
+export type TodosContextValue = [any, any, TodoActions];

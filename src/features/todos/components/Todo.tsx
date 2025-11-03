@@ -8,21 +8,10 @@ import React, {
 } from 'react';
 
 import {
-  type IndividualTodoType,
   TodosContext,
+  type TodoProps,
+  type TodosContextValue,
 } from '../utils/types/generalTodoTypes';
-
-interface TodoProps {
-  todo: IndividualTodoType;
-  isEditing: boolean;
-  setEditingId: (id: number | null) => void;
-}
-
-type TodoActions = {
-  updateTodo: (id: number, fields: any) => Promise<void>;
-  removeTodo: (id: number) => Promise<void>;
-};
-type TodosContextValue = [any, any, TodoActions];
 
 export const Todo: React.FC<TodoProps> = ({
   todo,

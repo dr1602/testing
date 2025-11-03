@@ -1,18 +1,33 @@
-import { useContext } from 'react';
+import { useContext, type MouseEvent } from 'react';
 
-import { TodosContext } from '../contexts/todos';
+import {
+  TodosContext,
+  type IndividualTodoType,
+  type TodosContextValue,
+  type State,
+} from '../utils/types/generalTodoTypes';
+
+type FilterType = State['filter'];
 
 export const Footer: React.FC = () => {
-  const [todosState, , { changeFilter }] = useContext(TodosContext);
+  const contextValue = useContext(TodosContext);
+  if (!TodosContext) {
+    throw new Error('Footer proviedr must be used within a TodosProvider');
+  }
+  const [todosState, , { changeFilter }] = contextValue as TodosContextValue;
+
   const noTodosClass = todosState.todos.length === 0 ? 'hidden' : '';
   const activeCount = todosState.todos.filter(
-    (todo) => !todo.isCompleted
+    (todo: IndividualTodoType) => !todo.isCompleted
   ).length;
   const itemsLeftText = ` item${activeCount !== 1 ? 's' : ''} left`;
-  const getSelectedClass = (filterName) => {
+  const getSelectedClass = (filterName: FilterType) => {
     return todosState.filter === filterName ? 'selected' : '';
   };
-  const changeActiveFilter = (event, filterName) => {
+  const changeActiveFilter = (
+    event: MouseEvent<HTMLAnchorElement>,
+    filterName: FilterType
+  ) => {
     event.preventDefault();
     changeFilter(filterName);
   };
