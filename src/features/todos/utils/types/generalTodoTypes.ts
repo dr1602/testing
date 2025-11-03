@@ -11,6 +11,11 @@ export interface State {
   filter: 'all' | 'active' | 'completed';
 }
 
+export interface StateSeveral {
+  todos: IndividualTodoType[];
+  filter: 'all' | 'active' | 'completed';
+}
+
 export type Action =
   | { type: 'getTodos'; payload: IndividualTodoType[] }
   | { type: 'addTodo'; payload: IndividualTodoType }

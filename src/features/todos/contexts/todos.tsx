@@ -12,7 +12,7 @@ import {
   type TodosProviderProps,
 } from '../utils/types/generalTodoTypes';
 
-export const initialState = {
+export const initialState: State = {
   todos: [],
   filter: 'all',
 };
