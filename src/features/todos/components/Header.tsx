@@ -11,7 +11,7 @@ import {
 } from '../utils/types/generalTodoTypes';
 
 export const Header: React.FC = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState<string>('');
   const [, , { addTodo }] = useContext(TodosContext) as TodosContextValue;
 
   const changeText = (event: ChangeEvent<HTMLInputElement>) => {
@@ -30,12 +30,13 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className='header' data-testid='header'>
+    <header className='header' role='heading'>
       <h1>todos</h1>
       <input
         className='new-todo'
         placeholder='What needs to be done?'
         data-testid='newTodoInput'
+        role='textbox'
         data-cy='newTodoInput'
         value={text}
         onChange={changeText}
