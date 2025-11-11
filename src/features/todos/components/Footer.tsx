@@ -33,8 +33,17 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className={`footer ${noTodosClass}`} data-testid='footer'>
-      <span className='todo-count' data-testid='todoCount' data-cy='todoCount'>
+    <footer
+      className={`footer ${noTodosClass}`}
+      data-testid='footer'
+      role='menubar'
+    >
+      <span
+        className='todo-count'
+        data-testid='todoCount'
+        data-cy='todoCount'
+        role='article'
+      >
         <strong>{activeCount}</strong>
         {itemsLeftText}
       </span>
@@ -44,6 +53,7 @@ export const Footer: React.FC = () => {
             href='/'
             data-testid='filterLink'
             data-cy='filterLink'
+            role='link'
             className={getSelectedClass('all')}
             onClick={(event) => changeActiveFilter(event, 'all')}
           >
@@ -55,6 +65,7 @@ export const Footer: React.FC = () => {
             href='/'
             data-testid='filterLink'
             data-cy='filterLink'
+            role='link'
             className={getSelectedClass('active')}
             onClick={(event) => changeActiveFilter(event, 'active')}
           >
@@ -66,6 +77,7 @@ export const Footer: React.FC = () => {
             href='/'
             data-testid='filterLink'
             data-cy='filterLink'
+            role='link'
             className={getSelectedClass('completed')}
             onClick={(event) => changeActiveFilter(event, 'completed')}
           >

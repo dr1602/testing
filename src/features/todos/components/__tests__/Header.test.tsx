@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 
 import { Header } from '../Header';
 import { TodosContext } from '../../utils/types/generalTodoTypes';
 import type { State } from '../../utils/types/generalTodoTypes';
-import userEvent from '@testing-library/user-event';
 
 const mockTodosState: State = { todos: [], filter: 'all' };
 const mockDispatch = vi.fn();
