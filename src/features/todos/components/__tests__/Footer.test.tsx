@@ -1,42 +1,19 @@
 import { render, screen } from '@testing-library/react';
-import { describe, vi } from 'vitest';
+import { describe } from 'vitest';
 import userEvent from '@testing-library/user-event';
 
 import { TodosContext } from '../../utils/types/generalTodoTypes';
 import { Footer } from '../Footer';
-import type { State } from '../../utils/types/generalTodoTypes';
-import { customRender } from '../../../../utils/testUtils';
-
-const mockTodosEmptyState: State = { todos: [], filter: 'all' };
-const mockTodosEmptyStateActive: State = {
-  todos: [{ id: 1, text: 'alpha', isCompleted: false }],
-  filter: 'active',
-};
-const mockTodosEmptyStateAll: State = {
-  todos: [{ id: 1, text: 'alpha', isCompleted: false }],
-  filter: 'all',
-};
-const mockTodosWithSomeValuesState: State = {
-  todos: [{ id: 1, text: 'alpha', isCompleted: false }],
-  filter: 'all',
-};
-const mockSeveralTodosWithSomeValuesState: State = {
-  todos: [
-    { id: 1, text: 'alpha', isCompleted: false },
-    { id: 2, text: 'beta', isCompleted: false },
-  ],
-  filter: 'all',
-};
-
-const mockDispatch = vi.fn();
-const mockAddTodo = vi.fn();
-const mockTodoActions = {
-  addTodo: mockAddTodo,
-  updateTodo: vi.fn(),
-  removeTodo: vi.fn(),
-  changeFilter: vi.fn(),
-  toggleAll: vi.fn(),
-};
+import {
+  customRender,
+  mockTodosEmptyState,
+  mockTodosEmptyStateActive,
+  mockTodosEmptyStateAll,
+  mockTodosWithSomeValuesState,
+  mockSeveralTodosWithSomeValuesState,
+  mockDispatch,
+  mockTodoActions,
+} from '../../../../utils/testUtils';
 
 describe('Footer', () => {
   describe('component visibility', () => {
