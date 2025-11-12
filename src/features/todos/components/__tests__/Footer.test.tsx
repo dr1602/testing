@@ -1,10 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { describe, vi } from 'vitest';
+import userEvent from '@testing-library/user-event';
 
 import { TodosContext } from '../../utils/types/generalTodoTypes';
 import { Footer } from '../Footer';
 import type { State } from '../../utils/types/generalTodoTypes';
-import userEvent from '@testing-library/user-event';
+import { customRender } from '../../../../utils/testUtils';
 
 const mockTodosEmptyState: State = { todos: [], filter: 'all' };
 const mockTodosEmptyStateActive: State = {
@@ -29,7 +30,6 @@ const mockSeveralTodosWithSomeValuesState: State = {
 
 const mockDispatch = vi.fn();
 const mockAddTodo = vi.fn();
-const mockChangeFilter = vi.fn();
 const mockTodoActions = {
   addTodo: mockAddTodo,
   updateTodo: vi.fn(),
@@ -41,13 +41,11 @@ const mockTodoActions = {
 describe('Footer', () => {
   describe('component visibility', () => {
     it('should be hidden with no todos', () => {
-      render(
-        <TodosContext.Provider
-          value={[mockTodosEmptyState, mockDispatch, mockTodoActions]}
-        >
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [
+        mockTodosEmptyState,
+        mockDispatch,
+        mockTodoActions,
+      ]);
 
       const FooterComponent = screen.getByRole('menubar');
       expect(FooterComponent).toHaveClass('hidden');
