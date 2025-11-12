@@ -63,6 +63,7 @@ export const Todo: React.FC<TodoProps> = ({
     <li
       className={`${editingClass} ${completedClass}`}
       data-testid='todo'
+      role='list'
       data-cy='todo'
     >
       <div className='view'>
@@ -78,6 +79,7 @@ export const Todo: React.FC<TodoProps> = ({
           onDoubleClick={setTodoInEditingMode}
           data-testid='label'
           data-cy='todoLabel'
+          role='listitem'
         >
           {todo.text}
         </label>
@@ -93,6 +95,7 @@ export const Todo: React.FC<TodoProps> = ({
           className='edit'
           data-testid='edit'
           data-cy='todoEdit'
+          role='listbox'
           ref={editInputEl}
           value={editText}
           onChange={changeEditInput}
