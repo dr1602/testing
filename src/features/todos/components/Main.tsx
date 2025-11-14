@@ -31,12 +31,13 @@ export const Main = () => {
   const visibleTodos = getVisibleTodos();
 
   return (
-    <section className={`main ${noTodosClass}`} data-testid='main'>
+    <section className={`main ${noTodosClass}`} data-testid='main' role='main'>
       <input
         id='toggle-all'
         className='toggle-all'
         type='checkbox'
         data-testid='toggleAll'
+        role='checkbox'
         data-cy='toggleAll'
         checked={isAllTodosSelected}
         onChange={(e) => toggleAll(e.target.checked)}

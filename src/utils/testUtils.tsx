@@ -12,6 +12,11 @@ export const customRender = (ui: ReactNode, providerProps: any) => {
 };
 
 export const mockBasicTodo = { id: 1, text: 'alpha', isCompleted: false };
+export const mockBasicCompletedTodo = {
+  id: 1,
+  text: 'alpha',
+  isCompleted: true,
+};
 export const multipleTodos = [
   { id: 1, text: 'alpha', isCompleted: false },
   { id: 2, text: 'beta', isCompleted: false },
@@ -21,6 +26,10 @@ export const mockTodosEmptyState: State = { todos: [], filter: 'all' };
 export const mockTodosEmptyStateActive: State = {
   todos: [mockBasicTodo],
   filter: 'active',
+};
+export const mockBasicCompletedTodoState: State = {
+  todos: [mockBasicCompletedTodo],
+  filter: 'all',
 };
 export const mockTodosEmptyStateAll: State = {
   todos: [mockBasicTodo],
@@ -40,13 +49,15 @@ export const mockDispatch = vi.fn();
 export const mockAddTodo = vi.fn();
 export const mockUptdateTodo = vi.fn();
 export const mockRemoveTodo = vi.fn();
+export const mockChangeFilterTodo = vi.fn();
+export const mockToggleTodo = vi.fn();
 
 export const mockTodoActions = {
   addTodo: mockAddTodo,
   updateTodo: mockUptdateTodo,
   removeTodo: mockRemoveTodo,
-  changeFilter: vi.fn(),
-  toggleAll: vi.fn(),
+  changeFilter: mockChangeFilterTodo,
+  toggleAll: mockToggleTodo,
 };
 
 export const mockProviderBasicValue = [
