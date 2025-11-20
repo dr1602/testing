@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const initialState = {
+import { type PostStateType } from '../../features/posts/types/postsTypes';
+
+export const initialState: PostStateType = {
   isLoading: false,
   error: null,
   data: [],

@@ -13,9 +13,9 @@ const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const Posts = () => {
   const dispatch = useAppDispatch();
-  const error = useAppSelector((state) => state.posts.error);
-  const posts = useAppSelector((state) => state.posts.data);
-  const isLoading = useAppSelector((state) => state.posts.isLoading);
+  const error: string | null = useAppSelector((state) => state.posts.error);
+  const posts: PostType[] = useAppSelector((state) => state.posts.data);
+  const isLoading: boolean = useAppSelector((state) => state.posts.isLoading);
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -24,9 +24,13 @@ export const Posts = () => {
     <>
       <h1>Posts Page</h1>
       {isLoading && <div data-testid='loading'>Loading</div>}
-      {error && <div data-testid='error'>{error}</div>}
+      {error && (
+        <div data-testid='error' role='alert'>
+          {error}
+        </div>
+      )}
       {posts.map((post: PostType) => (
-        <div key={post.id} data-testid='post'>
+        <div key={post.id} data-testid='post' role='article'>
           {post.name}
         </div>
       ))}
