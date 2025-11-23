@@ -69,7 +69,7 @@ describe('Post', () => {
     render(
       <Provider store={store}>
         <Posts />
-      </Provider>
+      </Provider>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     );
 
     const ButtonComponent = await screen.getByRole('button');
