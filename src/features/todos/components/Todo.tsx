@@ -65,6 +65,7 @@ export const Todo: React.FC<TodoProps> = ({
       data-testid='todo'
       role='list'
       data-cy='todo'
+      role-cy='list'
     >
       <div className='view'>
         <input
@@ -72,6 +73,7 @@ export const Todo: React.FC<TodoProps> = ({
           data-testid='toggle'
           data-cy='todoCheckbox'
           type='checkbox'
+          role-cy='checkbox'
           checked={todo.isCompleted}
           onChange={toggleTodo}
         />
@@ -88,6 +90,7 @@ export const Todo: React.FC<TodoProps> = ({
           data-cy='destroy'
           onClick={() => removeTodo(todo.id)}
           data-testid='destroy'
+          role-cy='button'
         />
       </div>
       {isEditing && (
@@ -96,6 +99,7 @@ export const Todo: React.FC<TodoProps> = ({
           data-testid='edit'
           data-cy='todoEdit'
           role='listbox'
+          role-cy='listbox'
           ref={editInputEl}
           value={editText}
           onChange={changeEditInput}
